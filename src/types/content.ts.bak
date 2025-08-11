@@ -1,0 +1,30 @@
+// 基本的なコンテンツデータ型
+export interface ContentData {
+  id: string;
+  type: string;
+  data: any;
+}
+
+// モジュール設定型
+export interface ModuleSettings {
+  difficulty?: 'easy' | 'medium' | 'hard';
+  [key: string]: any;
+}
+
+// コンテンツモジュール型
+export interface ContentModule {
+  id: string;
+  name: string;
+  displayName: string;
+  generate(settings?: ModuleSettings): ContentData;
+  render(data: ContentData): React.ReactElement;
+  defaultSettings: ModuleSettings;
+}
+
+// 印刷設定型
+export interface PrintSettings {
+  pageCount: number;
+  contentPerPage: number;
+  selectedModules: string[];
+  moduleWeights: Record<string, number>;
+}
